@@ -42,7 +42,7 @@ public class User implements UserDetails {
 
     private LocalDateTime lastUpdateDate;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Note> notes = new ArrayList<>();
 
     @Override

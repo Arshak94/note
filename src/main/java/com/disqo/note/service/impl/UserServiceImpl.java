@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(UserPayload userPayload) {
         User user = new User();
-        user.setUsername(userPayload.getUsername());
+        user.setUsername(userPayload.getEmail());
         user.setPassword(passwordEncoder.encode(userPayload.getPassword()));
         user.setRole(UserRole.ROLE_USER);
         user.setCreatedDate(LocalDateTime.now());

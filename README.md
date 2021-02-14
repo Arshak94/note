@@ -1,21 +1,34 @@
 # note
 
-## curls
+The Application is using MySql db
+The Sign in process is being done using oauth2 
+
+The user endpoint is not authenticated so any number of user can be created with any credentials
+
+
+## cURLs
 ### create user
 curl -X POST \
 http://localhost:8080/users \
 -H 'content-type: application/json' \
 -d '{
-"username":"arshak@disqo.com",
-"password":"123456"
+"email":"{email}",
+"password":"{password}"
 }'
 
-### get token
+### get access_token
 curl -X POST \
 http://localhost:8080/oauth/token \
 -H 'authorization: Basic Y2xpZW50OnNlY3JldA==' \
 -H 'content-type: application/x-www-form-urlencoded' \
--d 'username=arshak%40disqo.com&password=123456sdfdsfsd&grant_type=password'
+-d 'username={email}&password={password}&grant_type=password'
+
+### get access_token using refresh token
+curl -X POST \
+http://localhost:8080/oauth/token \
+-H 'authorization: Basic Y2xpZW50OnNlY3JldA==' \
+-H 'content-type: application/x-www-form-urlencoded' \
+-d 'refresh_token={refresh_token}'
 
 ### create note
 curl -X POST \

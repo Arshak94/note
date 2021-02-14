@@ -39,13 +39,13 @@ public class ErrorHandler {
         return new ErrorResponse(ex.getMessage());
     }
 
-    @ExceptionHandler // Duplicate email or other sql constraint violations
+    @ExceptionHandler
     @ResponseStatus(BAD_REQUEST)
     public ErrorResponse handleIntegrityViolation(DataIntegrityViolationException ex) {
         return new ErrorResponse(ofNullable(ex.getRootCause()).map(Throwable::getMessage).orElse(ex.getMessage()));
     }
 
-    @ExceptionHandler //@Valid annotated types and payload fields validation
+    @ExceptionHandler
     @ResponseStatus(BAD_REQUEST)
     public ErrorResponse handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
@@ -61,7 +61,7 @@ public class ErrorHandler {
         return new ErrorResponse(fieldErrors);
     }
 
-    @ExceptionHandler //@Valid annotated request params validation
+    @ExceptionHandler
     @ResponseStatus(BAD_REQUEST)
     public ErrorResponse handleConstraintViolation(ConstraintViolationException ex) {
         return new ErrorResponse(ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(joining("; ")));

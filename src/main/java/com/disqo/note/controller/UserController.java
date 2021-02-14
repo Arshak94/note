@@ -3,10 +3,8 @@ package com.disqo.note.controller;
 import com.disqo.note.binding.UserPayload;
 import com.disqo.note.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -18,6 +16,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void create(@Valid @RequestBody UserPayload userPayload){
         userService.create(userPayload);
     }
