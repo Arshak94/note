@@ -7,6 +7,7 @@ import com.disqo.note.model.User;
 import com.disqo.note.service.NotesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.projection.ProjectionFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,6 +30,7 @@ public class NoteController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public NoteResponse creat(@CurrentUser User user, @Valid @RequestBody NotePayload payload){
         return projectionFactory.createProjection(NoteResponse.class, notesService.create(user, payload));
     }
@@ -42,4 +44,9 @@ public class NoteController {
     public NoteResponse update(@CurrentUser User user, @Valid @RequestBody NotePayload payload, @PathVariable Long id){
         return projectionFactory.createProjection(NoteResponse.class, notesService.update(user, payload, id));
     }
+    @DeleteMapping("/{id}")
+    public void delete(@CurrentUser User user, @PathVariable Long id){
+          notesService.delete(user, id);
+    }
+
 }

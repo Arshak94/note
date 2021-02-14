@@ -21,8 +21,7 @@ public class Note {
     @Column(nullable = false, length = 1000)
     private String note;
 
-    @CreatedDate
-    private LocalDateTime createdDate;
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     private LocalDateTime lastUpdateDate = LocalDateTime.now();
 
