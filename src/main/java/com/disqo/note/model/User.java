@@ -9,7 +9,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -41,6 +43,9 @@ public class User implements UserDetails {
 
 
     private LocalDateTime lastUpdateDate;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Note> notes = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -103,5 +108,13 @@ public class User implements UserDetails {
 
     public void setLastUpdateTime(LocalDateTime lastUpdateDate) {
         this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 }
