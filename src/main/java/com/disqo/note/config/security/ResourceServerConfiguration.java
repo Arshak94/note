@@ -16,6 +16,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         http.anonymous().and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/oauth/token").permitAll()
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
 
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .anyRequest().authenticated();

@@ -25,7 +25,7 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public Note getNote(User user, Long id) {
-        return notesRepository.findByIdAndUserId(id, user.getId()).orElseThrow(EntityNotFoundException::new);
+        return notesRepository.findById(id).filter(n->n.getUser().getId().equals(user.getId())).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public Note update(User user, NotePayload notePayload, Long id) {
-        Note note = notesRepository.findByIdAndUserId(id, user.getId()).orElseThrow(EntityNotFoundException::new);
+        Note note = notesRepository.findById(id).filter(n->n.getUser().getId().equals(user.getId())).orElseThrow(EntityNotFoundException::new);
         return NoteMapper.map(note, notePayload, user);
     }
 

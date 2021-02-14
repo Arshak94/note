@@ -5,12 +5,12 @@ import javax.validation.constraints.Size;
 
 public class NotePayload {
 
-    @NotBlank
-    @Size(max = 50)
+    @NotBlank(message = "Title can not be a blank")
+    @Size(max = 50, message = "Title can not be max 50 character")
     private String title;
 
-    @NotBlank
-    @Size(max = 1000)
+    @NotBlank(message = "Title can not be a blank")
+    @Size(max = 1000, message = "Note can not be max 1000 character")
     private String note;
 
     public String getTitle() {

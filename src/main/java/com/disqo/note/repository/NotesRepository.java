@@ -11,5 +11,4 @@ import java.util.Optional;
 public interface NotesRepository extends JpaRepository<Note, Long> {
 
     public List<Note> findAllByUserId(Long userId);
-    public Optional<Note> findByIdAndUserId(Long id,Long userId);
 }

@@ -38,7 +38,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @CreatedDate
     private LocalDateTime createdDate;
 
 
