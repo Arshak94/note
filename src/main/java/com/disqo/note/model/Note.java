@@ -22,12 +22,15 @@ public class Note {
     @CreatedDate
     private LocalDateTime createdDate;
 
-
-    private LocalDateTime lastUpdateDate;
+    private LocalDateTime lastUpdateDate = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Long getId() {
+        return Id;
+    }
 
     public String getTitle() {
         return title;

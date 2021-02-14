@@ -3,6 +3,8 @@ package com.disqo.note.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.projection.ProjectionFactory;
+import org.springframework.data.projection.SpelAwareProxyProjectionFactory;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -23,5 +25,10 @@ public class AppConfig {
     @Bean
     public OAuth2RequestFactory oAuth2RequestFactory(){
         return new DefaultOAuth2RequestFactory(clientDetailsService);
+    }
+
+    @Bean
+    public ProjectionFactory projectionFactory() {
+        return new SpelAwareProxyProjectionFactory();
     }
 }
